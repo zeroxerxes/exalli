@@ -1,0 +1,8 @@
+(function(){(function($){var getSiblings=function(elem){var siblings=[];var sibling=elem.parentNode.firstChild;while(sibling){if(sibling.nodeType===1&&sibling!==elem){siblings.push(sibling);}
+sibling=sibling.nextSibling}
+return siblings;};})(jQuery);;ready(function(){var sectionsBox=document.querySelector('.category-section');var flag=true;if(sectionsBox){var categories=Array.prototype.slice.call(sectionsBox.querySelectorAll('.category'));var lazyloadThrottleTimeout;var lazyloads=function(element,clazz){if(element===null){return;}
+if(lazyloadThrottleTimeout){clearTimeout(lazyloadThrottleTimeout);}
+lazyloadThrottleTimeout=setTimeout(function(){var source=document.createElement('source');source.src=element.getAttribute('data-src');element.appendChild(source);element.classList.remove(clazz);element.classList.add('lazy-opacity');},520);};function startVideo(){categories.forEach(function(category,idx){var startVideoItem=function(e){var video=this.querySelector('video.lazy');lazyloads(video,'lazy');categories.forEach(function(c,i){var video=c.querySelector('.category__video-item');if(video){if(i===idx){if(video.play()!==null){video.play()}
+return video.play();}
+video.pause();}});};category.addEventListener('mouseenter',startVideoItem);category.addEventListener('touchenter',startVideoItem);var stopVideoItem=function(){categories.forEach(function(c,i){var video=c.querySelector('.category__video-item');if(video){video.pause();}});};sectionsBox.addEventListener('mouseleave',stopVideoItem);sectionsBox.addEventListener('touchleave',stopVideoItem);});}
+startVideo()}});}).call(this);
